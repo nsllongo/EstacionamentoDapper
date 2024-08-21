@@ -1,4 +1,4 @@
-use estacionamento_dapper;
+create database estacionamento_dapper;
 
 create table PARKING_SPOT(
 	ID 				BIGINT 	NOT NULL AUTO_INCREMENT,

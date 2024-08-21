@@ -1,4 +1,15 @@
+using System.Data;
+using MySql.Data.MySqlClient;
+using Dapper;
+
 var builder = WebApplication.CreateBuilder(args);
+
+// Adiciona a configuração do appsettings.json
+builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+
+// Adiciona o serviço de IDbConnection com a string de conexão do appsettings.json
+builder.Services.AddScoped<IDbConnection>(sp =>
+    new MySqlConnection(builder.Configuration.GetConnectionString("Default")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

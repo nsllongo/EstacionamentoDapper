@@ -1,0 +1,55 @@
+﻿@model IEnumerable<HourValue>
+
+@{
+    ViewData["Title"] = "Hour Value";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Hour Value</h1>
+</div>
+
+<div>
+    <a class="btn btn-primary" asp-controller="HourValue" asp-action="Add">New Value</a>
+
+</div>
+
+<a class= "text-center">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Hourly Rate</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>
+                        @foreach (var part in item.splitName)
+                        {
+                            <span>@part</span>
+                        }   
+                    </td>
+                    <td>@item.Value_Hour.ToString("C", new System.Globalization.CultureInfo("pt-BR"))</td>
+                    <th>
+                        <form onsubmit="return confirm('Confirma?')" asp-action="Delete" asp-route-id="@item.Id" asp-controller="HourValue" method="post" class="mt-4">
+                            <input type="hidden" name="id" value=""/>
+                            <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i> </button>
+                        </form>
+                    </th>
+                    <th>
+                        <form  asp-action="Edit"  asp-controller="HourValue" method="post" class="mt-4">
+                            <input type="hidden" name="id" value=""/>
+                            <button type="submit" class="btn btn-outline-warning"><i class="fas fa-pencil-alt"></i> </button>
+                        </form>
+                    </th>
+                </tr>
+            }
+        </tbody>    
+    </table>
+    
+</a>

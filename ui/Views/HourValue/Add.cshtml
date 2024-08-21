@@ -1,0 +1,30 @@
+﻿@model estacionamento.Models.HourValue
+
+@{
+    ViewData["Title"] = "Add Value";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Add Value</h1>
+</div>
+
+
+<div class= "text-left">
+    
+    <form asp-action="Add" asp-controller="HourValue" method="post" class="mt-4">
+        <div class="form-group">
+            <label asp-for="Name" class="control-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Value_Hour" class="control-label">Hourly Rate</label>
+            <input asp-for="Value_Hour" class="form-control" />
+            <span asp-validation-for="Value_Hour" class="text-danger"></span>
+        </div>
+        <div class="form-group text-center">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+    
+</div>
